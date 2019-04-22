@@ -3,7 +3,31 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 
 # Create your models here.
-class Products(models.Model):
+class ProductCategory(models.Model):
+    id = models.AutoField(primary_key=True)
+    category = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.category
+
+    class Meta:
+        unique_together = ['category']
+
+
+class ProductBrand(models.Model):
+    id = models.AutoField(primary_key=True)
+    brand = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.brand
+
+    class Meta:
+        unique_together = ['brand']
+
+
+class Product(models.Model):
+    product_category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    product_brand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=50, default='none')
     slug = models.CharField(max_length=50, default='none')
     product_description = models.TextField(max_length=5000, default='none')
