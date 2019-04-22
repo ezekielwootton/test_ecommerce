@@ -1,0 +1,14 @@
+{% extends 'base_layout.html'%}
+
+{% block content %}
+<h3>This is a testing page for the products view...</h3>
+
+<div class="products">
+    {% for product in products %}
+    <div class="product">
+        <h3><a href="{% url 'products:item' slug=product.slug %}">{{product.product_name}}</a></h3>
+        <p>{{product.snippet}}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

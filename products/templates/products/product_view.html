@@ -1,0 +1,9 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="product_details">
+    <img src="{{ product.product_thumbnail.url }}">
+    <h3>{{product.product_name}}</h3>
+    <p>{{product.product_description}}</p>
+</div>
+{% endblock %}
